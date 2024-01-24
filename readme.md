@@ -1,0 +1,95 @@
+# Outlook desktop Reverse engeenering
+
+The aim of this project is to reverse engineer the Outlook desktop app to find a way to block the ads. This is a work in progress, so don't expect anything. I am in no way experienced in reverse engineering, so if you have any tips, please let me know.
+
+---
+
+## Table of Contents
+
+- [FAQ](#faq)
+- [Current findings](#current-findings)
+  - [URL based loading](#url-based-loading)
+  - [Background threads](#background-threads)
+    - [Important arguments](#important-arguments)
+    - [Important functions](#important-functions)
+- [Current Approaches](#current-approaches)
+  - [URL based blocking](#url-based-blocking)
+  - [Background thread blocking](#background-thread-blocking)
+- [Project files](#project-files)
+- [Contributing](#contributing)
+- [Disclaimer](#disclaimer)
+
+---
+
+# FAQ
+
+- **Q:** Why?
+
+    A: I like outlook. I use it a lot, personally and for work. I don't like ads. I want to block them. Also I want to learn more about reverse engineering.
+
+- **Q:** What is the goal of this project?
+
+    A: To find a way to block the ads in the Outlook desktop app, without breaking the app and removing the blank space where the ads would be.
+
+- **Q:** What tools are you using?
+
+    A: I am using [Process Hacker](https://processhacker.sourceforge.io/) to view the threads and [Ghidra](https://ghidra-sre.org/) to reverse engineer the app.
+
+---
+
+## Current findings
+
+### URL based loading
+
+- Ads are loaded from `https://outlookads.live.com/`
+
+### Background threads
+
+When the app is opened, everything is rendered using the Microsoft Edge WebView2 (`msedgewebview2.exe`) with the render ID's 1-6. The ads are rendered in the render ID 7. This thread gets created when switching to the tab containing the ads.
+
+#### Important arguments
+
+- `--renderer-client-id=7`
+- `--webview-exe-name=olk.exe`
+
+#### Important functions
+
+- None found (yet hehe)
+
+---
+
+## Current Approaches
+
+Here are some approaches that I've tried, but didn't work out to the extend that I wanted them to.
+
+### URL based blocking
+
+- Blocking the URL in the hosts file. This works, but still leaves a blank space where the ads would be. See [this](https://github.com/Pyenb/Outlook-desktop-ad-blocker/) repo for more info.
+
+### Background thread blocking
+
+- Pausing the render ID 7 thread. This works, but also leaves the blank space behind. See [barblock.py](./barblock.py) for a PoC.
+
+- Killing the render ID 7 thread. Sadly, this also kills the whole app, making it unusable.
+
+---
+
+# Project files
+
+In this repo included is my current Ghidra project file. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
+
+ALso included is the `barblock.py` file, which is a PoC for the background thread blocking approach.
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+## Disclaimer
+
+This repository is for research purposes only, the use of this code is your responsibility.
+
+I take NO responsibility and/or liability for how you choose to use any of the source code available here. By using any of the files available in this repository, you understand that you are AGREEING TO USE AT YOUR OWN RISK. Once again, ALL files available here are for EDUCATION and/or RESEARCH purposes ONLY.
