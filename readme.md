@@ -10,8 +10,8 @@ The aim of this project is to reverse engineer the Outlook desktop app to find a
 - [Current findings](#current-findings)
   - [URL based loading](#url-based-loading)
   - [Background threads](#background-threads)
-    - [Important arguments](#important-arguments)
-    - [Important functions](#important-functions)
+    - [MS WebView2](#what-does-the-microsoft-edge-webview2-do)
+    - [Optout string](#optout-string)
 - [Current Approaches](#current-approaches)
   - [URL based blocking](#url-based-blocking)
   - [Background thread blocking](#background-thread-blocking)
@@ -45,7 +45,27 @@ The aim of this project is to reverse engineer the Outlook desktop app to find a
 
 ### Background threads
 
-When the app is opened, everything is rendered using the Microsoft Edge WebView2 (`msedgewebview2.exe`) with the render ID's 1-6. The ads are rendered in the render ID 7. This thread gets created when switching to the tab containing the ads.
+When the app is opened, everything is rendered using the [Microsoft Edge WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (`msedgewebview2.exe`) with the render ID's 1-6. The ads are rendered in the render ID 7. This thread gets created when switching to the tab containing the ads.
+
+![Threads](images/PHoverview.png)
+
+#### What does the Microsoft Edge WebView2 do?
+
+```text
+"The Microsoft Edge WebView2 control allows you to embed web technologies (HTML, CSS, and JavaScript) in your native apps. The WebView2 control uses Microsoft Edge as the rendering engine to display the web content in native apps."
+```
+
+For us, this means that the ads loaded in some way of HTML, CSS or JavaScript. After checking the filesystem, I couldn't find any files that loaded the ads. This means that the ads are probably loaded from the internet. But things get more interesting when checking the strings loaded into the memory of the `msedgewebview2.exe` process, with the render ID 7.
+
+![Strings](images/PHadsframeStrings.png)
+
+Here we can see the string `adsframe` repeated again and agains, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beatified version of the file.
+
+While this is very interesting, I haven't found anything too interesting in the 30K lines of code.
+
+#### Optout string
+
+Also interesting is the `optout` string. This probably means that there is a way to opt out of the ads, but I couldn't figure out what the needed payload is. When accessing the site directly, it just loops the outlook startup animation, without anything else happening.
 
 #### Important arguments
 
@@ -84,7 +104,7 @@ ALso included is the `barblock.py` file, which is a PoC for the background threa
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are *VERY* welcome. I am not experienced in reverse engineering, so any help is appreciated. For major changes, please open an issue first to discuss what you would like to change.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
