@@ -61,7 +61,9 @@ For us, this means that the ads loaded in some way of HTML, CSS or JavaScript. A
 
 Here we can see the string `adsframe` repeated again and agains, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beatified version of the file.
 
-While this is very interesting, I haven't found anything too interesting in the 30K lines of code.
+While this is very important, I haven't found anything too interesting in the 30K lines of code.
+
+But what could be very important is the last memory address `0x38f00160c00c`. At this address we can see the beginning of the entire `adsframe.js` file. That means that the code is loaded into the memory somewhere around there.
 
 #### Optout string
 
