@@ -15,6 +15,7 @@ The aim of this project is to reverse engineer the Outlook desktop app to find a
 - [Current Approaches](#current-approaches)
   - [URL based blocking](#url-based-blocking)
   - [Background thread blocking](#background-thread-blocking)
+- [Suggestions](#suggestions)
 - [Project files](#project-files)
 - [Contributing](#contributing)
 - [Disclaimer](#disclaimer)
@@ -96,7 +97,15 @@ Here are some approaches that I've tried, but didn't work out to the extend that
 
 ---
 
-# Project files
+## Suggestions
+
+Here are some suggestions, that I got from other people (mostly [Discord](https://discord.com/channels/391398885819547652/1200216320839524372)). I haven't tried them yet, but I will in the future. Feel free to suggest more!
+
+- Find the function that loads the `adsframe.js` and make it return nothing or point it to a custom server that returns a blank javascript file.
+
+---
+
+## Project files
 
 In this repo included is my current Ghidra project file. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
 
