@@ -60,7 +60,7 @@ For us, this means that the ads loaded in some way of HTML, CSS or JavaScript. A
 
 ![Strings](images/PHadsframeStrings.png)
 
-Here we can see the string `adsframe` repeated again and agains, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beatified version of the file.
+Here we can see the string `adsframe` repeated again and agains, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beautified version of the file.
 
 While this is very important, I haven't found anything too interesting in the 30K lines of code.
 
@@ -77,7 +77,7 @@ Also interesting is the `optout` string. This probably means that there is a way
 
 #### Important functions
 
-- None found (yet hehe)
+- None found (yet)
 
 ---
 
