@@ -1,4 +1,4 @@
-# Outlook desktop Reverse engeenering
+# Outlook desktop Reverse engineering
 
 The aim of this project is to reverse engineer the Outlook desktop app to find a way to block the ads. This is a work in progress, so don't expect anything. I am in no way experienced in reverse engineering, so if you have any tips, please let me know.
 
@@ -60,7 +60,7 @@ For us, this means that the ads loaded in some way of HTML, CSS or JavaScript. A
 
 ![Strings](images/PHadsframeStrings.png)
 
-Here we can see the string `adsframe` repeated again and agains, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beautified version of the file.
+Here we can see the string `adsframe` repeated again and again, as well as the [MS office CDN link](https://res.cdn.office.net/owamail/hashed-v1/scripts/owa.adsframe.857c6e5b.js) to the javascript file responsible for loading the ads. Check out [adsframe.js](./adsframe.js) for a beautified version of the file.
 
 While this is very important, I haven't found anything too interesting in the 30K lines of code.
 
@@ -107,7 +107,7 @@ Here are some suggestions, that I got from other people (mostly [Discord](https:
 
 ## Project files
 
-In this repo included is my current Ghidra project file. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
+Due to GitHub's LFS restrictions, I have moved my [Ghidra project files](https://data.pyenb.network/github/Outlook-ads-RE/Outlook-ads-RE.zip) to my Storage-VPS. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
 
 ALso included is the `barblock.py` file, which is a PoC for the background thread blocking approach.
 
