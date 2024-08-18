@@ -107,7 +107,7 @@ Here are some suggestions, that I got from other people (mostly [Discord](https:
 
 ## Project files
 
-Due to GitHub's LFS restrictions, I have moved my [Ghidra project files](https://data.pyenb.network/github/Outlook-ads-RE/Outlook-ads-RE.zip) to my Storage-VPS. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
+Due to GitHub's LFS restrictions, I have moved my [Ghidra project files](https://data.pyenb.network/Github/Outlook-ads-RE/Outlook-ads-RE.zip) to my Storage-VPS. This contains the older `OUTLOOK.EXE`, which is the base outlook with most of the features and the newer `OLK.EXE`, which is the new UI with the ads.
 
 ALso included is the `barblock.py` file, which is a PoC for the background thread blocking approach.
 
